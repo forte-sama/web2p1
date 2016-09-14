@@ -8,8 +8,10 @@
     <h:head>
         <title>JSF 2.0 Hello World</title>
     </h:head>
-    <h:body bgcolor="white">
-        <h2>JSF 2.0 Hello World Example - welcome.xhtml</h2>
-        <h2>Welcome #{klkBean.name}</h2>
+    <h:body bgcolor="cyan">
+        <h1>Contact List</h1>
     </h:body>
+    <ui:repeat value="#{contactBean.getContactos()}" var="c">
+        <h3>#{c.nombre} : #{c.apellido}</h3>
+    </ui:repeat>
 </html>

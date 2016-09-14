@@ -12,13 +12,17 @@
 <h:body>
     <h1>Lista de Contactos</h1>
     <h:form>
-        <h:panelGrid columns="4" cellpadding="5">
-            <p:inputText value="#{contactBean.name}"></p:inputText>
-            <p:inputText value="#{contactBean.apellido}"></p:inputText>
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="nombre_txt" value="Nombre: " />
+            <p:inputText id="nombre_txt" value="#{contactBean.name}" required="true" />
+            <p:message for="nombre_txt" />
+            <p:outputLabel for="apellido_txt" value="Apellido: " />
+            <p:inputText id="apellido_txt" value="#{contactBean.apellido}" required="true" />
+            <p:message for="apellido_txt" />
             <p:commandButton
                     value="Agregar contacto"
                     actionListener="#{contactBean.agregarRapido}"
-                    ajax="false"/>
+                    ajax="false" />
         </h:panelGrid>
     </h:form>
 
@@ -29,12 +33,12 @@
                 emptyMessage="No tienes ningun contacto..."
                 selectionMode="single"
                 selection="#{contactBean.contactoSeleccionado}"
-                rowKey="#{c.getId()}">
+                rowKey="#{c.getId()}" >
             <f:facet name="header">
                 <p:commandButton
                         value="Detallar Contacto"
                         action="#{contactBean.verDetalle}"
-                        ajax="false"/>
+                        ajax="false" />
             </f:facet>
             <p:column headerText="Nombre">
                 <h:outputText value="#{c.getNombre()}" />
@@ -56,7 +60,7 @@
                 <p:commandButton
                         value="Borrar"
                         ajax="false"
-                        actionListener="#{contactBean.borrar(c)}"/>
+                        actionListener="#{contactBean.borrar(c)}" />
             </p:column>
         </p:dataTable>
     </h:form>

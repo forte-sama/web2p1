@@ -4,14 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>JSF 2.0 Hello World</title>
     </h:head>
     <h:body bgcolor="cyan">
         <h1>Contact List</h1>
     </h:body>
-    <ui:repeat value="#{contactBean.getContactos()}" var="c">
-        <h3>#{c.nombre} : #{c.apellido}</h3>
-    </ui:repeat>
+    <h:form>
+        <h:outputText value="#{contactBean.id}" />
+        <h:outputText value="#{contactBean.apellido}" />
+        <h:outputText value="#{contactBean.direccion}" />
+        <h:outputText value="#{contactBean.telefono}" />
+        <h:outputText value="#{contactBean.correo}" />
+
+        <p:commandButton value="Volver" action="${contactBean.guardar}"/>
+    </h:form>
 </html>

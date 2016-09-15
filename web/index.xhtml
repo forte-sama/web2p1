@@ -4,16 +4,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-   <title>web2p1</title>
+    <title>web2p1</title>
 </h:head>
 <h:body>
-   <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
-   <h:form>
-      <h:inputText value="#{contactBean.name}"></h:inputText>
-      <h:inputText value="#{contactBean.apellido}"></h:inputText>
-      <h:commandButton value="Welcome Me" action="#{contactBean.agregar}"></h:commandButton>
-   </h:form>
+    <h1>Lista de Contactos</h1>
+    <h:form>
+        <h:panelGrid columns="4" cellpadding="5">
+            <p:inputText value="#{contactBean.name}"></p:inputText>
+            <p:inputText value="#{contactBean.apellido}"></p:inputText>
+            <p:commandButton
+                    value="Agregar contacto"
+                    actionListener="#{contactBean.agregarRapido}"
+                    ajax="false"/>
+        </h:panelGrid>
+    </h:form>
+
+    <h:form>
+        <p:dataTable
+                var="c"
+                value="#{contactBean.getContactos()}"
+                emptyMessage="No tienes ningun contacto..."
+                selectionMode="single"
+                selection="#{contactBean.contactoSeleccionado}"
+                rowKey="#{c.getId()}">
+            <f:facet name="header">
+                <p:commandButton
+                        value="Detallar Contacto"
+                        action="#{contactBean.verDetalle}"
+                        ajax="false"/>
+            </f:facet>
+            <p:column headerText="Nombre">
+                <h:outputText value="#{c.getNombre()}" />
+            </p:column>
+            <p:column headerText="Apellido">
+                <h:outputText value="#{c.getApellido()}" />
+            </p:column>
+            <p:column headerText="Direccion">
+                <h:outputText value="#{c.getDireccion()}" />
+            </p:column>
+            <p:column headerText="Telefono">
+                <h:outputText value="#{c.getTelefono()}" />
+            </p:column>
+            <p:column headerText="Correo">
+                <h:outputText value="#{c.getCorreo()}" />
+            </p:column>
+
+            <p:column headerText="Acciones">
+                <p:commandButton
+                        value="Borrar"
+                        ajax="false"
+                        actionListener="#{contactBean.borrar(c)}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
 </h:body>
 </html>

@@ -2,7 +2,7 @@
  * Created by forte on 14/09/16.
  */
 public class Contacto {
-    static int idCount;
+    private static int idCount;
     private int id;
     private String nombre;
     private String apellido;
@@ -24,6 +24,10 @@ public class Contacto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getApellido() {
@@ -56,9 +60,5 @@ public class Contacto {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public int getId() {
-        return id;
     }
 }
